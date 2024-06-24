@@ -36,7 +36,7 @@ springdoc:
 
 logging:
   level:
-    org.springframework: DEBUG
+    org.springframework: INFO
     com.example.backendapplication: INFO
 
 jwt:
@@ -45,6 +45,6 @@ jwt:
   expirationMinute: 10
 
 swagger:
-  app-description: Backend Application
+  app-description: API Documentation for a simple task list application
   app-version: 1.0.0
-  app-name: Backend Application
+  app-name: Task App
