@@ -27,6 +27,7 @@ tasks:
 ports:
     - name: Backend SwaggerUI
       port: 8080
+      protocol: https
       onOpen: ignore
     - name: Frontend App
       port: 3000
@@ -38,7 +39,7 @@ ports:
       port: 3306
       onOpen: ignore
     - name: Redis
-      port: 6789
+      port: 6379
       onOpen: ignore
 
 
