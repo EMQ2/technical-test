@@ -15,7 +15,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -43,20 +45,12 @@ public class SecurityConfiguration {
 
         //@formatter:off
 
-		return http.cors(s ->
-			s.configurationSource(configure -> {
-				final CorsConfiguration cors = new CorsConfiguration();
-				cors.setAllowedOrigins(List.of("*"));
-				cors.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "HEAD", "DELETE", "OPTIONS"));
-				cors.setAllowedHeaders(List.of("Origin", "Accept", "X-Requested-With", "Content-Type", "Access-Control-Request-Method", "Access-Control-Request-Headers", "Authorization"));
-				cors.setExposedHeaders(List.of("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "Authorization"));
-				return cors;
-			}))
+		return http.cors(withDefaults())
 				.csrf(AbstractHttpConfigurer::disable)
 				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
 				.authorizeHttpRequests(httpReq -> {
 					httpReq.requestMatchers("/**", "/api/**", "/register", "/login","/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/actuator/**").permitAll();
-					httpReq.anyRequest().authenticated();
+					httpReq.anyRequest().permitAll();
 				})
 				.exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -64,6 +58,16 @@ public class SecurityConfiguration {
 
 		//@formatter:on
     }
+
+		@Bean
+		CorsConfigurationSource corsConfigurationSource() {
+				CorsConfiguration configuration = new CorsConfiguration();
+				configuration.setAllowedOrigins(Arrays.asList("*"));
+				configuration.setAllowedMethods(Arrays.asList("GET","POST","OPTIONS","HEAD"));
+				UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+				source.registerCorsConfiguration("/**", configuration);
+				return source;
+		}
 
 
 }
