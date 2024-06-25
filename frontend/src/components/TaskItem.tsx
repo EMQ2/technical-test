@@ -1,3 +1,19 @@
+// TODO: Create a TaskItem component that displays a task and its subtasks
+// The TaskItem component should take the following props:
+// - task: Task - The task object to display
+// - addSubTask: (index: string, subTask: string) => void - A function to add a subtask to the task
+// - toggleTaskComplete: (index: string) => void - A function to toggle the completion status of the task
+// - toggleSubTaskComplete: (taskIndex: string, subTaskIndex: string) => void - A function to toggle the completion status of a subtask
+// The TaskItem component should render the following:
+// - A Checkbox component to display the task name and toggle the completion status of the task
+// - A list of subtasks, each displayed as a Checkbox component
+// - An AddTaskForm component to add new subtasks to the task
+// - The task name and subtask names should have a line-through style when completed
+// - The TaskItem component should be a functional component
+// - Make sure to import any necessary dependencies
+// - Make sure to export the TaskItem component
+
+// Solution
 import React from "react";
 import { List, Checkbox } from "antd";
 import { Task } from "../types/Task";
