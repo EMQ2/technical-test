@@ -5,9 +5,7 @@ import RoutesComponent from "./routes/Routes";
 document.title = "To-Do List App";
 
 function App() {
-  return (
-    <RoutesComponent />
-  );
+  return <RoutesComponent />;
 }
 
 export default App;

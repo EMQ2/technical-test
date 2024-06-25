@@ -1,4 +1,4 @@
-import { CreateTask, Task } from "../types/Task";
+import { CreateTask } from "../types/Task";
 import { get, post } from "./API";
 
 const fetchAllTasks = async () => {

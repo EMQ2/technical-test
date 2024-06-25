@@ -11,16 +11,14 @@ import { TaskList } from "../components/TaskList";
 
 interface ITodoListProps {}
 
-export const TodoList: React.FunctionComponent<
-ITodoListProps
-> = () => {
-    const {Title} = Typography;
+export const TodoList: React.FunctionComponent<ITodoListProps> = () => {
+  const { Title } = Typography;
   const [tasks, setTasks] = React.useState<Task[]>([]);
 
   const fetchTasks = async () => {
     const response = await fetchAllTasks();
     setTasks(response.content);
-  }
+  };
 
   useEffect(() => {
     fetchTasks();
@@ -29,7 +27,7 @@ ITodoListProps
   const handleFormSubmit = (todo: CreateTask): void => {
     console.log(todo);
     createTask(todo).then((response) => {
-        console.log(response);
+      console.log(response);
       fetchTasks();
       message.success("Task added!");
     });
@@ -50,7 +48,9 @@ ITodoListProps
         xl={{ span: 18 }}
       >
         <Title level={2}>Add Task</Title>
-        <Title level={4}>To add a task, just fill the form below and click in add task.</Title>
+        <Title level={4}>
+          To add a task, just fill the form below and click in add task.
+        </Title>
       </Col>
 
       <Col
@@ -73,9 +73,7 @@ ITodoListProps
         xl={{ span: 18 }}
       >
         <Card title="Todo List">
-          <TaskList
-            tasks={tasks}
-          />
+          <TaskList tasks={tasks} />
         </Card>
       </Col>
     </Row>
