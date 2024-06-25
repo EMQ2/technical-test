@@ -12,12 +12,14 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 class SubTaskControllerIntegrationTest {
 
+    public static final String INVALID_ID = "00000000-0000-0000-0000-000000000000";
     @Autowired
     private MockMvc mockMvc;
 
@@ -86,12 +88,22 @@ class SubTaskControllerIntegrationTest {
     void testToggleTaskCompletion() throws Exception {
         mockMvc.perform(put("/subtasks/{id}", getSubTaskId()))
                 .andExpect(status().isOk());
+
+        // If task id is invalid, throw error
+        mockMvc.perform(put("/subtasks/{id}", INVALID_ID))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("Task with id 00000000-0000-0000-0000-000000000000 not found"));
     }
 
     @Test
     void testGetTask() throws Exception {
         mockMvc.perform(get("/subtasks/{id}", getSubTaskId()))
                 .andExpect(status().isOk());
+
+        // If task id is invalid, throw error
+        mockMvc.perform(get("/subtasks/{id}", INVALID_ID))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("Task with id 00000000-0000-0000-0000-000000000000 not found"));
     }
 
     @Test
@@ -104,11 +116,23 @@ class SubTaskControllerIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk());
+
+        // If task id is invalid, throw error
+        mockMvc.perform(post("/subtasks/{id}", INVALID_ID)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("Task with id 00000000-0000-0000-0000-000000000000 not found"));
     }
 
     @Test
     void testDeleteTask() throws Exception {
         mockMvc.perform(delete("/subtasks/{id}", getSubTaskId()))
                 .andExpect(status().isOk());
+
+        // If task id is invalid, throw error
+        mockMvc.perform(delete("/subtasks/{id}", INVALID_ID))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("Task with id 00000000-0000-0000-0000-000000000000 not found"));
     }
 }

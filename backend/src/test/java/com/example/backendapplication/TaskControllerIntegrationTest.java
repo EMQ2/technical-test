@@ -11,11 +11,14 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 class TaskControllerIntegrationTest {
+
+    public static final String INVALID_ID = "00000000-0000-0000-0000-000000000000";
 
     @Autowired
     private MockMvc mockMvc;
@@ -61,12 +64,20 @@ class TaskControllerIntegrationTest {
     void testToggleTaskCompletion() throws Exception {
         mockMvc.perform(put("/tasks/task/{id}", getTaskId()))
                 .andExpect(status().isOk());
+
+        mockMvc.perform(put("/tasks/task/{id}", INVALID_ID))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("Task with id " + INVALID_ID + " not found"));
     }
 
     @Test
     void testGetTask() throws Exception {
         mockMvc.perform(get("/tasks/task/{id}", getTaskId()))
                 .andExpect(status().isOk());
+
+        mockMvc.perform(get("/tasks/task/{id}", INVALID_ID))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("Task with id " + INVALID_ID + " not found"));
     }
 
     @Test
@@ -79,11 +90,21 @@ class TaskControllerIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk());
+
+        mockMvc.perform(post("/tasks/task/{id}", INVALID_ID)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("Task with id " + INVALID_ID + " not found"));
     }
 
     @Test
     void testDeleteTask() throws Exception {
         mockMvc.perform(delete("/tasks/task/{id}", getTaskId()))
                 .andExpect(status().isOk());
+
+        mockMvc.perform(delete("/tasks/task/{id}", INVALID_ID))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("Task with id " + INVALID_ID + " not found"));
     }
 }
