@@ -3,12 +3,17 @@ import { Form, Row, Col, Button, Input } from "antd";
 import { PlusCircleFilled } from "@ant-design/icons";
 
 import { CreateTask } from "../types/Task";
+import { CreateSubTask } from "../types/SubTask";
 
 interface IAddTodoFormProps {
-  onFormSubmit: (todo: CreateTask) => void;
+  onFormSubmit: (todo: any) => void;
+  buttonLabel: string;
 }
 
-export const AddTaskForm: React.FC<IAddTodoFormProps> = ({ onFormSubmit }) => {
+export const AddTaskForm: React.FC<IAddTodoFormProps> = ({
+  onFormSubmit,
+  buttonLabel,
+}) => {
   const [form] = Form.useForm();
 
   const onFinish = () => {
@@ -33,7 +38,7 @@ export const AddTaskForm: React.FC<IAddTodoFormProps> = ({ onFormSubmit }) => {
         <Col xs={24} sm={24} md={7} lg={5} xl={4}>
           <Button type="primary" htmlType="submit" block>
             <PlusCircleFilled />
-            Add Task
+            {buttonLabel}
           </Button>
         </Col>
       </Row>

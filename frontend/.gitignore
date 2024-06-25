@@ -26,3 +26,6 @@ yarn-error.log*
 
 # lock files
 # package-lock.json
+
+# dist
+**/dist/**

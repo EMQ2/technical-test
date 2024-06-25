@@ -1,6 +1,12 @@
+import { SubTask } from "./SubTask";
+
 export type Task = {
-  id: number;
+  id: string;
+  details?: string;
   completed: boolean;
+  createdDate?: string;
+  updatedDate?: string;
+  subTasks?: SubTask[];
 } & CreateTask;
 
 export type CreateTask = {

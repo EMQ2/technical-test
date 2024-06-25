@@ -12,14 +12,29 @@ const api = axios.create({
 
 initInterceptors(api);
 
-const get = async (endpoint: string, parameters: Object) => {
+const Get = async (endpoint: string, parameters: Object) => {
   const response = await api.get(endpoint, { params: parameters });
   return response.data;
 };
 
-const post = async (endpoint: string, parameters: Object) => {
+const Post = async (endpoint: string, parameters: Object) => {
   const response = await api.post(endpoint, parameters);
   return response.data;
 };
 
-export { get, post };
+export { Get, Post };
+
+// TODO: Implement the Put and Delete functions
+
+// Solution
+const Put = async (endpoint: string, parameters: Object) => {
+  const response = await api.put(endpoint, parameters);
+  return response.data;
+};
+
+const Delete = async (endpoint: string, parameters: Object) => {
+  const response = await api.delete(endpoint, parameters);
+  return response.data;
+};
+
+export { Put, Delete };

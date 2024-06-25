@@ -7,7 +7,7 @@ import { message } from "antd";
 import { CreateTask, Task } from "../types/Task";
 import { createTask, fetchAllTasks } from "../api/TaskAPI";
 import { AddTaskForm } from "../components/AddTaskForm";
-import { TaskList } from "../components/TaskList";
+import TaskList from "../components/TaskList";
 
 interface ITodoListProps {}
 
@@ -61,7 +61,7 @@ export const TodoList: React.FunctionComponent<ITodoListProps> = () => {
         xl={{ span: 18 }}
       >
         <Card title="Create a new todo">
-          <AddTaskForm onFormSubmit={handleFormSubmit} />
+          <AddTaskForm onFormSubmit={handleFormSubmit} buttonLabel="Add Task" />
         </Card>
       </Col>
 
@@ -73,7 +73,7 @@ export const TodoList: React.FunctionComponent<ITodoListProps> = () => {
         xl={{ span: 18 }}
       >
         <Card title="Todo List">
-          <TaskList tasks={tasks} />
+          <TaskList />
         </Card>
       </Col>
     </Row>
