@@ -6,13 +6,28 @@
 
 image:
     file: .gitpod.Dockerfile
-    
+
 tasks:
   - init: cd backend && mvn clean install -DskipTests=false
-  - command: docker-compose up -d; 
+  - name: Run Services
+    command: docker-compose up -d; 
 # Build and Run
-  - command: cd backend && mvn spring-boot:run
+  - name: Run Backend Java Springboot
+    command: cd backend && mvn spring-boot:run
+  - name: Run Frontend ReactJS
+    command: cd frontend && npm run start
+  - name: Run Storybook
+    command: cd frontend && npm run storybook
 
-
+ports:
+    - name: Backend SwaggerUI
+      port: 8080
+      onOpen: open-preview
+    - name: Frontend App
+      port: 3000
+      onOpen: open-preview
+    - name: Frontend Storybook
+      port: 6006
+      onOpen: open-preview
 
 
