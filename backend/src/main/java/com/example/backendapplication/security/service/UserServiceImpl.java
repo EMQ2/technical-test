@@ -7,7 +7,8 @@ import com.example.backendapplication.security.dto.AuthenticatedUserDto;
 import com.example.backendapplication.security.dto.RegistrationRequest;
 import com.example.backendapplication.security.dto.RegistrationResponse;
 import com.example.backendapplication.security.mapper.UserMapper;
-import com.example.backendapplication.service.UserValidationService;
+import com.example.backendapplication.service.IUserValidationService;
+import com.example.backendapplication.service.impl.UserValidationService;
 import com.example.backendapplication.utils.GeneralMessageAccessor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	private final UserValidationService userValidationService;
+	private final IUserValidationService userValidationService;
 
 	private final GeneralMessageAccessor generalMessageAccessor;
 

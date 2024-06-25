@@ -1,8 +1,9 @@
-package com.example.backendapplication.service;
+package com.example.backendapplication.service.impl;
 
 import com.example.backendapplication.exceptions.RegistrationException;
 import com.example.backendapplication.repository.UserRepository;
 import com.example.backendapplication.security.dto.RegistrationRequest;
+import com.example.backendapplication.service.IUserValidationService;
 import com.example.backendapplication.utils.ExceptionMessageAccessor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class UserValidationService {
+public class UserValidationService implements IUserValidationService {
 
 	private static final String EMAIL_ALREADY_EXISTS = "email_already_exists";
 
@@ -26,6 +27,7 @@ public class UserValidationService {
 
 	private final ExceptionMessageAccessor exceptionMessageAccessor;
 
+	@Override
 	public void validateUser(RegistrationRequest registrationRequest) {
 
 		final String email = registrationRequest.getEmail();

@@ -3,6 +3,7 @@ package com.example.backendapplication.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
 import java.util.UUID;
 
 @Getter
@@ -23,4 +24,8 @@ public class Task {
     private String details;
 
     private boolean completed;
+
+    private Date createdDate;
+
+    private Date updatedDate;
 }
