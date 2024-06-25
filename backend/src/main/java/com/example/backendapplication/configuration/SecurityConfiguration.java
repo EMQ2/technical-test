@@ -43,12 +43,13 @@ public class SecurityConfiguration {
 
 		return http.cors(AbstractHttpConfigurer::disable).csrf(AbstractHttpConfigurer::disable)
 				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-				.authorizeRequests()
-				.requestMatchers("/**", "/api/**", "/register", "/login","/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/actuator/**").permitAll()
-				.anyRequest().authenticated().and()
-				.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				.and().build();
+				.authorizeHttpRequests(httpReq -> {
+					httpReq.requestMatchers("/**", "/api/**", "/register", "/login","/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/actuator/**").permitAll();
+					httpReq.anyRequest().authenticated();
+				})
+				.exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.build();
 
 		//@formatter:on
 	}
