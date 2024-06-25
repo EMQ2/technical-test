@@ -27,7 +27,6 @@ tasks:
 ports:
     - name: Backend SwaggerUI
       port: 8080
-      protocol: https
       onOpen: ignore
     - name: Frontend App
       port: 3000
