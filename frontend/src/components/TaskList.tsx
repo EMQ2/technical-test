@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { List, Checkbox, message } from 'antd';
-import { AddTaskForm } from './AddTaskForm';
-import { CreateTask } from '../types/Task';
-import { createTask, fetchAllTasks, toggleTaskCompletion } from '../api/TaskAPI';
-import { CreateSubTask, SubTask } from '../types/SubTask';
-import { createSubTask, fetchAllSubTasks } from '../api/SubTaskAPI';
+import React, { useEffect, useState } from "react";
+import { List, Checkbox, message } from "antd";
+import { AddTaskForm } from "./AddTaskForm";
+import { CreateTask } from "../types/Task";
+import {
+  createTask,
+  fetchAllTasks,
+  toggleTaskCompletion,
+} from "../api/TaskAPI";
+import { CreateSubTask, SubTask } from "../types/SubTask";
+import { createSubTask, fetchAllSubTasks } from "../api/SubTaskAPI";
 
 interface SubTaskCreate {
   name: string;
@@ -24,11 +28,13 @@ const TaskList: React.FC = () => {
     const tasks = await fetchAllTasks().then((response) => response.content);
     console.log(tasks, "Task");
     await Promise.all(
-      tasks.map(async (task: { id: string; subTasks: any; }) => {
-        const subTasks = await fetchAllSubTasks(task.id).then((response) => response.content);
+      tasks.map(async (task: { id: string; subTasks: any }) => {
+        const subTasks = await fetchAllSubTasks(task.id).then(
+          (response) => response.content,
+        );
         task.subTasks = subTasks;
         return task;
-      })
+      }),
     );
     setTasks(tasks);
   };
@@ -36,7 +42,6 @@ const TaskList: React.FC = () => {
   useEffect(() => {
     fetchTasks();
   }, []);
-
 
   const addTask = (task: CreateTask) => {
     console.log(task);
@@ -65,13 +70,14 @@ const TaskList: React.FC = () => {
 
   const toggleSubTaskCompletion = (taskIndex: number, subTaskIndex: number) => {
     const newTasks = [...tasks];
-    newTasks[taskIndex].subTasks[subTaskIndex].completed = !newTasks[taskIndex].subTasks[subTaskIndex].completed;
+    newTasks[taskIndex].subTasks[subTaskIndex].completed =
+      !newTasks[taskIndex].subTasks[subTaskIndex].completed;
     fetchTasks();
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <AddTaskForm onFormSubmit={addTask} buttonLabel='Add Task' />
+    <div style={{ padding: "20px" }}>
+      <AddTaskForm onFormSubmit={addTask} buttonLabel="Add Task" />
       <List
         dataSource={tasks}
         renderItem={(task, index) => (
@@ -85,7 +91,7 @@ const TaskList: React.FC = () => {
             />
           </List.Item>
         )}
-        style={{ marginTop: '20px' }}
+        style={{ marginTop: "20px" }}
       />
     </div>
   );
@@ -99,42 +105,56 @@ interface TaskProps {
   toggleSubTaskCompletion: (taskIndex: number, subTaskIndex: number) => void;
 }
 
-const Task: React.FC<TaskProps> = ({ task, index, addSubTask, toggleTaskComplete, toggleSubTaskCompletion }) => {
-  
+const Task: React.FC<TaskProps> = ({
+  task,
+  index,
+  addSubTask,
+  toggleTaskComplete,
+  toggleSubTaskCompletion,
+}) => {
   const handleAddSubTask = (subTaskInput: SubTaskCreate) => {
-      addSubTask(task.id, subTaskInput.name);
+    addSubTask(task.id, subTaskInput.name);
   };
 
   return (
-    <div style={{ width: '100%' }}>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+    <div style={{ width: "100%" }}>
+      <div style={{ display: "flex", alignItems: "center" }}>
         <Checkbox
           checked={task.completed}
           onChange={() => toggleTaskCompletion(task.id)}
         >
-          <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+          <span
+            style={{ textDecoration: task.completed ? "line-through" : "none" }}
+          >
             {task.name}
           </span>
         </Checkbox>
       </div>
-      <div style = {{ paddingInline: '20px', marginTop: '10px' }}>
-      <AddTaskForm onFormSubmit={handleAddSubTask} buttonLabel='Add Sub Task' />
-      <List
-        dataSource={task.subTasks}
-        renderItem={(subTask, subTaskIndex) => (
-          <List.Item>
-            <Checkbox
-              checked={subTask.completed}
-              onChange={() => toggleSubTaskCompletion(index, subTaskIndex)}
-            >
-              <span style={{ textDecoration: subTask.completed ? 'line-through' : 'none' }}>
-                {subTask.name}
-              </span>
-            </Checkbox>
-          </List.Item>
-        )}
-        style={{ marginTop: '10px'}}
-      />
+      <div style={{ paddingInline: "20px", marginTop: "10px" }}>
+        <AddTaskForm
+          onFormSubmit={handleAddSubTask}
+          buttonLabel="Add Sub Task"
+        />
+        <List
+          dataSource={task.subTasks}
+          renderItem={(subTask, subTaskIndex) => (
+            <List.Item>
+              <Checkbox
+                checked={subTask.completed}
+                onChange={() => toggleSubTaskCompletion(index, subTaskIndex)}
+              >
+                <span
+                  style={{
+                    textDecoration: subTask.completed ? "line-through" : "none",
+                  }}
+                >
+                  {subTask.name}
+                </span>
+              </Checkbox>
+            </List.Item>
+          )}
+          style={{ marginTop: "10px" }}
+        />
       </div>
     </div>
   );

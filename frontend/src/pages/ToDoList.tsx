@@ -8,6 +8,7 @@ import { CreateTask, Task } from "../types/Task";
 import { createTask, fetchAllTasks } from "../api/TaskAPI";
 import { AddTaskForm } from "../components/AddTaskForm";
 import TaskList from "../components/TaskList";
+import { PageHeader } from "../components/PageHeader";
 
 interface ITodoListProps {}
 
@@ -47,22 +48,16 @@ export const TodoList: React.FunctionComponent<ITodoListProps> = () => {
         lg={{ span: 20 }}
         xl={{ span: 18 }}
       >
-        <Title level={2}>Add Task</Title>
-        <Title level={4}>
-          To add a task, just fill the form below and click in add task.
-        </Title>
-      </Col>
+        {/* TODO: Implement the page header component and display the following information
+          title: Task List
+          subTitle: To add a task, just fill the form below and click in add task.
 
-      <Col
-        xs={{ span: 23 }}
-        sm={{ span: 23 }}
-        md={{ span: 21 }}
-        lg={{ span: 20 }}
-        xl={{ span: 18 }}
-      >
-        <Card title="Create a new todo">
-          <AddTaskForm onFormSubmit={handleFormSubmit} buttonLabel="Add Task" />
-        </Card>
+          Solution below
+        */}
+        <PageHeader
+          title="Task List"
+          subTitle="To add a task, just fill the form below and click in add task."
+        />
       </Col>
 
       <Col
