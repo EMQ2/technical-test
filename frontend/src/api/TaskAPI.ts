@@ -8,11 +8,7 @@ const fetchAllTasks = async () => {
 };
 
 const createTask = async (task: CreateTask) => {
-  return {
-    id: 1,
-    title: "Task 1",
-  };
-  const response = await post("/task/create", task);
+  const response = await post("/tasks/task", task);
   return response;
 };
 

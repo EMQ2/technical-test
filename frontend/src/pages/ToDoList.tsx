@@ -17,17 +17,21 @@ ITodoListProps
     const {Title} = Typography;
   const [tasks, setTasks] = React.useState<Task[]>([]);
 
+  const fetchTasks = async () => {
+    const response = await fetchAllTasks();
+    setTasks(response.content);
+  }
+
   useEffect(() => {
-    fetchAllTasks().then((tasks) => {
-      setTasks(tasks);
-    });
+    fetchTasks();
   }, []);
 
   const handleFormSubmit = (todo: CreateTask): void => {
     console.log(todo);
     createTask(todo).then((response) => {
-      console.log(response);
-      message.success("Todo added!");
+        console.log(response);
+      fetchTasks();
+      message.success("Task added!");
     });
   };
 

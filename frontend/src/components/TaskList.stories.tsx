@@ -11,8 +11,8 @@ export default {
 
 export const Default = () => (
   <TaskList tasks={[
-    { id: 1, title: 'Task 1', completed: false },
-    { id: 2, title: 'Task 2', completed: true },
-    { id: 3, title: 'Task 3', completed: false },
+    { id: 1, name: 'Task 1', completed: false },
+    { id: 2, name: 'Task 2', completed: true },
+    { id: 3, name: 'Task 3', completed: false },
   ]} />
 );

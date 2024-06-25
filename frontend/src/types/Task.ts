@@ -4,5 +4,5 @@ export type Task = {
 } & CreateTask;
 
 export type CreateTask = {
-  title: string;
+  name: string;
 };

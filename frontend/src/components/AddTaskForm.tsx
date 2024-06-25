@@ -13,7 +13,7 @@ export const AddTaskForm: React.FC<IAddTodoFormProps> = ({ onFormSubmit }) => {
 
   const onFinish = () => {
     onFormSubmit({
-      title: form.getFieldValue('title'),
+      name: form.getFieldValue('name'),
     });
 
     form.resetFields();
@@ -24,12 +24,11 @@ export const AddTaskForm: React.FC<IAddTodoFormProps> = ({ onFormSubmit }) => {
       form={form}
       onFinish={onFinish}
       layout="horizontal"
-      className="todo-form"
     >
       <Row gutter={20}>
         <Col xs={24} sm={24} md={17} lg={19} xl={20}>
           <Form.Item
-            name={'title'}
+            name={'name'}
             rules={[{ required: true, message: 'This field is required' }]}
           >
             <Input placeholder="What needs to be done?" />

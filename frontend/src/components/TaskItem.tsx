@@ -29,7 +29,7 @@ export const TaskItem: React.FC<ITaskItemProps> = ({
     >
       <div className="task-item">
         <Tag color={task.completed ? 'cyan' : 'red'} className="task-tag">
-          {task.title}
+          {task.name}
         </Tag>
       </div>
     </List.Item>
