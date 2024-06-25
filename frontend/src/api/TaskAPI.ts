@@ -2,19 +2,8 @@ import { CreateTask, Task } from "../types/Task";
 import { get, post } from "./API";
 
 const fetchAllTasks = async () => {
-  return [
-    {
-      id: 1,
-      title: "Task 1",
-      completed: false,
-    },
-    {
-      id: 2,
-      title: "Task 2",
-      completed: true,
-    },
-  ];
-  const response = await get("/task/all", {});
+  const response = await get("/tasks/", {});
+  console.log(response);
   return response;
 };
 

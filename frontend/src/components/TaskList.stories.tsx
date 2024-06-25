@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 
 import { StoryFn } from '@storybook/react';
 
-import { TaskList } from './';
+import { TaskList } from '.';
 
 export default {
   title: 'Components/TaskList',
