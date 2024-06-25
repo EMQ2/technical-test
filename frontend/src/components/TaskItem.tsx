@@ -1,8 +1,6 @@
 import React from "react";
-import { Tooltip, Tag, List, Switch, Button, Typography, Checkbox } from "antd";
-import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
+import { List, Checkbox } from "antd";
 import { Task } from "../types/Task";
-import { toggleTaskCompletion } from "../api/TaskAPI";
 import { AddTaskForm } from "./AddTaskForm";
 
 interface SubTaskCreate {

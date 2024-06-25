@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { List, Checkbox, message } from "antd";
+import { List, message } from "antd";
 import { AddTaskForm } from "./AddTaskForm";
 import { CreateTask, Task } from "../types/Task";
 import {
@@ -7,13 +7,13 @@ import {
   fetchAllTasks,
   toggleTaskCompletion,
 } from "../api/TaskAPI";
-import { CreateSubTask, SubTask } from "../types/SubTask";
-import { createSubTask, fetchAllSubTasks, toggleSubTaskCompletion } from "../api/SubTaskAPI";
+import { CreateSubTask } from "../types/SubTask";
+import {
+  createSubTask,
+  fetchAllSubTasks,
+  toggleSubTaskCompletion,
+} from "../api/SubTaskAPI";
 import { TaskItem } from "./TaskItem";
-
-interface SubTaskCreate {
-  name: string;
-}
 
 const TaskList: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -87,7 +87,5 @@ const TaskList: React.FC = () => {
     </div>
   );
 };
-
-
 
 export default TaskList;
