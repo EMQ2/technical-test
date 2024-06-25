@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -44,5 +43,44 @@ public class TaskService implements ITaskService {
 
         task.setCompleted(!task.isCompleted());
         return taskRepository.save(task);
+    }
+
+    /*
+    * Sample Solutions Below
+     */
+
+    @Override
+    public Task getTaskById(UUID taskId) throws TaskNotFoundException {
+        Task task = taskRepository.findById(taskId).orElse(null);
+        if (task == null) {
+            throw new TaskNotFoundException(taskId);
+        }
+
+        return task;
+    }
+
+    @Override
+    public Task updateTask(UUID taskId, String title, String description) throws TaskNotFoundException {
+        Task task = taskRepository.findById(taskId).orElse(null);
+        if (task == null) {
+            throw new TaskNotFoundException(taskId);
+        }
+
+        task.setName(title);
+        task.setDetails(description);
+        task.setUpdatedDate(new Date());
+
+        return taskRepository.save(task);
+    }
+
+    @Override
+    public boolean deleteTask(UUID taskId) throws TaskNotFoundException {
+        Task task = taskRepository.findById(taskId).orElse(null);
+        if (task == null) {
+            throw new TaskNotFoundException(taskId);
+        }
+
+        taskRepository.delete(task);
+        return true;
     }
 }
