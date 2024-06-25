@@ -17,7 +17,8 @@ Your task is to make specific modifications to showcase your understanding of va
 
 To get started with Gitpod, follow these steps:
 
-1. Wait for a few minutes, and you will see the following windows opening automatically: 
+1. [![Open in Gitpod](https://camo.githubusercontent.com/95fbab4ac41e62a9f66e6d1d78f8249c418b33f8c7739c4f9c593f953f5362de/68747470733a2f2f676974706f642e696f2f627574746f6e2f6f70656e2d696e2d676974706f642e737667)](https://gitpod.io/from-referrer/)
+2. Wait for a few minutes, and you will see the following windows opening automatically: 
    - Port 8080: Swagger UI for Backend APIs
    - Port 3000: Frontend React JS Application
    - Port 6006: Frontend Storybook for React Components
@@ -25,8 +26,8 @@ To get started with Gitpod, follow these steps:
 > [!Note]  
 > If you don't see the windows opening automatically, please ensure that you have allowed pop-ups in your browser. If the windows still don't open, you can manually open them by clicking on the globe icons in the "Ports" tab on the bottom panel.
 
-2. Take some time to review the existing codebase and architecture.
-3. Complete the tasks as per the instructions provided in the `TASKS.md` file.
+3. Take some time to review the existing codebase and architecture.
+4. Complete the tasks as per the instructions provided in the `TASKS.md` file.
 
 ## Getting Started (via Local Development)
 
