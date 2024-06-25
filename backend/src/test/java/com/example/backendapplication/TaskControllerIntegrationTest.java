@@ -49,38 +49,33 @@ class TaskControllerIntegrationTest {
                 .andExpect(status().isOk()).andReturn();
     }
 
-    @Test
-    void testToggleTaskCompletion() throws Exception {
+    private String getTaskId() throws Exception {
         MvcResult task = createTask();
         String response = task.getResponse().getContentAsString();
         String id = objectMapper.readTree(response).get("id").asText();
         assert id != null;
-        mockMvc.perform(put("/tasks/task/{id}", id))
+        return id;
+    }
+
+    @Test
+    void testToggleTaskCompletion() throws Exception {
+        mockMvc.perform(put("/tasks/task/{id}", getTaskId()))
                 .andExpect(status().isOk());
     }
 
     @Test
     void testGetTask() throws Exception {
-        MvcResult task = createTask();
-        String response = task.getResponse().getContentAsString();
-        String id = objectMapper.readTree(response).get("id").asText();
-        assert id != null;
-        mockMvc.perform(get("/tasks/task/{id}", id))
+        mockMvc.perform(get("/tasks/task/{id}", getTaskId()))
                 .andExpect(status().isOk());
     }
 
     @Test
     void testUpdateTask() throws Exception {
-        MvcResult task = createTask();
-        String response = task.getResponse().getContentAsString();
-        String id = objectMapper.readTree(response).get("id").asText();
-        assert id != null;
-
         TaskCreationRequest request = new TaskCreationRequest();
         request.setName("Updated Task");
         request.setDetails("Updated Details");
 
-        mockMvc.perform(post("/tasks/task/{id}", id)
+        mockMvc.perform(post("/tasks/task/{id}", getTaskId())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk());
@@ -88,12 +83,7 @@ class TaskControllerIntegrationTest {
 
     @Test
     void testDeleteTask() throws Exception {
-        MvcResult task = createTask();
-        String response = task.getResponse().getContentAsString();
-        String id = objectMapper.readTree(response).get("id").asText();
-        assert id != null;
-
-        mockMvc.perform(delete("/tasks/task/{id}", id))
+        mockMvc.perform(delete("/tasks/task/{id}", getTaskId()))
                 .andExpect(status().isOk());
     }
 }
