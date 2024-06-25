@@ -1,10 +1,10 @@
-# Full-Stack Developer Coding Challenge
+# Welcome to the Full-Stack Developer Coding Challenge!
 
-Welcome to the Full-Stack Developer Coding Challenge! This repository contains a sample application that you'll be working with to demonstrate your full-stack development skills.
+Thank you for participating in the Full-Stack Developer Coding Challenge! This repository contains a sample application that you'll be working with to demonstrate your full-stack development skills.
 
 ## Project Overview
 
-The application consists of:
+The application consists of the following components:
 - Backend: Java Spring Boot application (Dockerized)
 - Frontend: React Native application with Storybook components
 - Basic UI and APIs are already implemented
@@ -13,27 +13,33 @@ Your task is to make specific modifications to showcase your understanding of va
 
 ## Getting Started (via Gitpod)
 
-1. In a few minutes, there will be these windows opening automatically: 
+To get started with Gitpod, follow these steps:
+
+1. Wait for a few minutes, and you will see the following windows opening automatically: 
    - Port 8080: Swagger UI for Backend APIs
    - Port 3000: Frontend React JS Application
    - Port 6006: Frontend Storybook for React Components
 
 > [!Note]  
-> If you don't see the windows opening automatically, ensure that you have allowed pop-ups in your browser. If the windows still don't open, you can open them manually by clicking on the globe icons in the "Ports" tab on the bottom panel.
+> If you don't see the windows opening automatically, please ensure that you have allowed pop-ups in your browser. If the windows still don't open, you can manually open them by clicking on the globe icons in the "Ports" tab on the bottom panel.
 
-2. Review the existing codebase and architecture.
-3. Complete the tasks as per the instructions in the `TASKS.md` file.
+2. Take some time to review the existing codebase and architecture.
+3. Complete the tasks as per the instructions provided in the `TASKS.md` file.
 
 ## Getting Started (via Local Development)
 
-1. Set up the development environment as per the instructions in the `SETUP.md` file.
-2. Review the existing codebase and architecture.
-3. Complete the tasks as per the instructions in the `TASKS.md` file.
+To get started with local development, follow these steps:
+
+1. Set up your development environment by following the instructions provided in the `SETUP.md` file.
+2. Take some time to review the existing codebase and architecture.
+3. Complete the tasks as per the instructions provided in the `TASKS.md` file.
 
 ## Submission Process
 
+To submit your work, please follow these steps:
+
 1. Create a new branch for your changes.
-2. Commit your changes with **meaningful** commit messages (Hint: Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary))
+2. Commit your changes with **meaningful** commit messages. We recommend using [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary) for your commit messages.
 3. Push your branch to the repository.
 4. Create a pull request with a description of the changes you've made.
 5. Submit the pull request link in the application portal as a comment.
@@ -54,10 +60,11 @@ Your submission will be evaluated based on the following criteria:
 
 ## Time Limit
 
-You have a maximum of 3 calendar days to complete as many tasks as possible, although you shouldn't take more than 1 hour to complete this. Quality is valued over quantity, so focus on delivering well-implemented features rather than trying to complete everything if time is short.
+You have a maximum of 3 calendar days to complete as many tasks as possible. However, we recommend not spending more than 1 hour on this challenge. Quality is valued over quantity, so focus on delivering well-implemented features rather than trying to complete everything if time is short.
 
 ## Questions and Support
 
 If you have any questions or need clarification on any aspect of the project, please leave a comment in the application portal. We're here to help!
 
 Good luck, and we look forward to reviewing your work!
+
