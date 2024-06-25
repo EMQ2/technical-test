@@ -33,12 +33,15 @@ tasks:
 ports:
     - name: Backend SwaggerUI
       port: 8080
+      visibility: public
       onOpen: ignore
     - name: Frontend App
       port: 3000
+      visibility: public
       onOpen: ignore
     - name: Frontend Storybook
       port: 6006
+      visibility: public
       onOpen: ignore
     - name: MariaDB
       port: 3306
