@@ -4,7 +4,7 @@
 import { Task } from "./Task";
 
 export type SubTask = {
-  id: number;
+  id: string;
   parentId: Task;
   details?: string;
   completed: boolean;

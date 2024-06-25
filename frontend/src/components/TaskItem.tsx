@@ -9,18 +9,18 @@ interface SubTaskCreate {
   name: string;
 }
 
-interface TaskProps {
+interface TaskItemProps {
   task: Task;
   addSubTask: (index: string, subTask: string) => void;
   toggleTaskComplete: (index: string) => void;
-  toggleSubTaskCompletion: (taskIndex: string, subTaskIndex: number) => void;
+  toggleSubTaskComplete: (taskIndex: string, subTaskIndex: string) => void;
 }
 
-export const TaskItem: React.FC<TaskProps> = ({
+export const TaskItem: React.FC<TaskItemProps> = ({
   task,
   addSubTask,
   toggleTaskComplete,
-  toggleSubTaskCompletion,
+  toggleSubTaskComplete,
 }) => {
   const handleAddSubTask = (subTaskInput: SubTaskCreate) => {
     addSubTask(task.id, subTaskInput.name);
@@ -46,12 +46,13 @@ export const TaskItem: React.FC<TaskProps> = ({
           buttonLabel="Add Sub Task"
         />
         <List
+          locale={{ emptyText: "No sub tasks" }}
           dataSource={task.subTasks}
-          renderItem={(subTask, subTaskIndex) => (
-            <List.Item>
+          renderItem={(subTask) => (
+            <List.Item key={subTask.id}>
               <Checkbox
                 checked={subTask.completed}
-                onChange={() => toggleSubTaskCompletion(task.id, subTaskIndex)}
+                onChange={() => toggleSubTaskComplete(task.id, subTask.id)}
               >
                 <span
                   style={{
