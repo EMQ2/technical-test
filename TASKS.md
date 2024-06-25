@@ -98,9 +98,9 @@ Implement the "Delete Task" feature in the Frontend React JS application to dele
 ### Description
 Extend the existing application APIs to handle sub-tasks for each task.
 ### Steps
-1. Open the `Task.java` file located at `./backend/src/main/java/com/example/backendapplication/model/Task.java`.
-2. Add a new field `List<Task>` to represent sub-tasks for each task.
-3. Update the `TaskController` to handle sub-tasks for each task.
+1. Create a files called `Subtask.java` file located at `./backend/src/main/java/com/example/backendapplication/model/`.
+2. Add a new field `List<Subtask>` in `Task.java` to represent sub-tasks for each task.
+3. Create a `SubtaskController` to handle sub-tasks for each task.
 4. Implement the following APIs:
    - `GET /tasks/{id}/subtasks`: Retrieve all sub-tasks for a specific task.
    - `POST /tasks/{id}/subtasks`: Create a new sub-task for a specific task.
