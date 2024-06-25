@@ -25,4 +25,4 @@ yarn-error.log*
 *storybook.log
 
 # lock files
-package-lock.json
+# package-lock.json
