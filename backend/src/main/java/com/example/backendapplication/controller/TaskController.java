@@ -59,22 +59,31 @@ public class TaskController {
 
     @Operation(summary = "Get a task by ID")
     @GetMapping("/task/{id}")
-    public ResponseEntity<Void> getTask(@PathVariable UUID id) {
+    public ResponseEntity<Task> getTask(@PathVariable UUID id) throws TaskNotFoundException {
         // TODO: Implement me
-        throw new RuntimeException("Not implemented");
+//        throw new RuntimeException("Not implemented");
+
+        // Solution below
+        return ResponseEntity.ok(taskService.getTaskById(id));
     }
 
     @Operation(summary = "Update a task")
     @PostMapping("/task/{id}")
-    public ResponseEntity<Void> updateTask(@PathVariable UUID id) {
+    public ResponseEntity<Task> updateTask(@PathVariable UUID id, @RequestBody @Valid TaskCreationRequest request) throws TaskNotFoundException {
         // TODO: Implement me
-        throw new RuntimeException("Not implemented");
+//        throw new RuntimeException("Not implemented");
+
+        // Solution Below
+        return ResponseEntity.ok(taskService.updateTask(id, request.getName(), request.getDetails()));
     }
 
     @Operation(summary = "Delete a task")
     @DeleteMapping("/task/{id}")
-    public ResponseEntity<Void> deleteTask(@PathVariable UUID id) {
+    public ResponseEntity<Boolean> deleteTask(@PathVariable UUID id) throws TaskNotFoundException {
         // TODO: Implement me
-        throw new RuntimeException("Not implemented");
+//        throw new RuntimeException("Not implemented");
+
+        // Solution Below
+        return ResponseEntity.ok(taskService.deleteTask(id));
     }
 }
