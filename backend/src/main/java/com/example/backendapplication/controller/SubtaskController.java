@@ -25,7 +25,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class SubtaskController {
 
     // TODO: Solution to remove this variable

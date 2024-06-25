@@ -23,7 +23,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class TaskController {
 
     private final ITaskService taskService;
