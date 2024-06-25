@@ -12,7 +12,7 @@ tasks:
     init: |
       y | sdk install java 17.0.3-ms || true
       cd backend 
-      mvn clean install -DskipTests=false
+      mvn clean install -DskipTests=true
     command: mvn spring-boot:run
   - name: Open SwaggerUI
     command: |
