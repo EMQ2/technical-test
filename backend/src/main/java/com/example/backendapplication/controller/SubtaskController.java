@@ -1,8 +1,10 @@
 package com.example.backendapplication.controller;
 
 import com.example.backendapplication.exceptions.TaskNotFoundException;
+import com.example.backendapplication.model.Subtask;
 import com.example.backendapplication.model.Task;
 import com.example.backendapplication.model.TaskCreationRequest;
+import com.example.backendapplication.service.ISubTaskService;
 import com.example.backendapplication.service.ITaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -26,42 +28,71 @@ import java.util.UUID;
 @CrossOrigin
 public class SubtaskController {
 
-    @Operation(summary = "Get all subtasks for tasks")
+    // TODO: Solution to remove this variable
+    // TODO: Update all controller return value from Subtask to Task as well
+    private final ISubTaskService subTaskService;
+
+    @Operation(summary = "Get all sub-tasks for a parent task")
     @GetMapping("/")
-    public ResponseEntity<Page<Task>> getTasks(@RequestParam(value = "page", defaultValue = "0") Integer page,
-                                               @RequestParam(value = "size", defaultValue = "10") Integer size,
-                                               @RequestParam(value = "orderBy", defaultValue = "name") String orderBy,
-                                               @RequestParam(value = "direction", defaultValue = "ASC") String direction) {
-        throw new RuntimeException("Not implemented");
+    public ResponseEntity<Page<Subtask>> getTasks(@RequestParam(value = "page", defaultValue = "0") Integer page,
+                                                  @RequestParam(value = "size", defaultValue = "10") Integer size,
+                                                  @RequestParam(value = "orderBy", defaultValue = "name") String orderBy,
+                                                  @RequestParam(value = "direction", defaultValue = "ASC") String direction,
+                                                  @RequestParam UUID parentTask) {
+//        throw new RuntimeException("Not implemented");
+
+        // TODO: Solution
+        log.info("Getting all sub-tasks for parent task with ID {} with page {}, size {}, orderBy {}, direction {}", parentTask, page, size, orderBy, direction);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(direction), orderBy));
+
+        return ResponseEntity.ok(subTaskService.getAllTasks(pageable, parentTask));
     }
 
     @Operation(summary = "Create a sub-task")
     @PostMapping("/")
-    public ResponseEntity<Task> createTask() {
-        throw new RuntimeException("Not implemented");
+    public ResponseEntity<Subtask> createTask(@RequestBody @Valid TaskCreationRequest request, @RequestParam UUID parentTask) throws TaskNotFoundException {
+//        throw new RuntimeException("Not implemented");
+
+        // TODO: Solution
+
+        log.info("Creating sub-task with name {} and details {} for parent task with ID {}", request.getName(), request.getDetails(), parentTask);
+        return ResponseEntity.ok(subTaskService.createTask(request.getName(), request.getDetails(), parentTask));
     }
 
     @Operation(summary = "Toggle sub-task completion")
     @PutMapping("/{id}")
-    public ResponseEntity<Task> toggleTaskCompletion(@PathVariable UUID id) {
-        throw new RuntimeException("Not implemented");
+    public ResponseEntity<Subtask> toggleTaskCompletion(@PathVariable UUID id) throws TaskNotFoundException {
+//        throw new RuntimeException("Not implemented");
+
+        // TODO: Solution
+        log.info("Toggling sub-task completion for sub-task with ID {}", id);
+        return ResponseEntity.ok(subTaskService.toggleTaskCompletion(id));
     }
 
-    @Operation(summary = "Get a task by ID")
+    @Operation(summary = "Get a sub-task by ID")
     @GetMapping("/{id}")
-    public ResponseEntity<Task> getTask(@PathVariable UUID id) {
-        throw new RuntimeException("Not implemented");
+    public ResponseEntity<Subtask> getTask(@PathVariable UUID id) throws TaskNotFoundException {
+//        throw new RuntimeException("Not implemented");
+
+        // TODO: Solution
+        return ResponseEntity.ok(subTaskService.getTaskById(id));
     }
 
-    @Operation(summary = "Update a task")
+    @Operation(summary = "Update a sub-task")
     @PostMapping("/{id}")
-    public ResponseEntity<Task> updateTask(@PathVariable UUID id, @RequestBody @Valid TaskCreationRequest request) {
-        throw new RuntimeException("Not implemented");
+    public ResponseEntity<Subtask> updateTask(@PathVariable UUID id, @RequestBody @Valid TaskCreationRequest request) throws TaskNotFoundException {
+//        throw new RuntimeException("Not implemented");
+
+        // TODO: Solution
+        return ResponseEntity.ok(subTaskService.updateTask(id, request.getName(), request.getDetails()));
     }
 
-    @Operation(summary = "Delete a task")
+    @Operation(summary = "Delete a sub-task")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteTask(@PathVariable UUID id) {
-        throw new RuntimeException("Not implemented");
+    public ResponseEntity<Boolean> deleteTask(@PathVariable UUID id) throws TaskNotFoundException {
+//        throw new RuntimeException("Not implemented");
+
+        // TODO: Solution
+        return ResponseEntity.ok(subTaskService.deleteTask(id));
     }
 }
