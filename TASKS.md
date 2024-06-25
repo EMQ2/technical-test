@@ -12,6 +12,9 @@ Mark the tasks you have completed with an `x` in the checkbox. This is required 
 - [ ] Task 5: Open-Ended Question (Performance)
 - [ ] Task 6: Open-Ended Question (Security)
 
+## Notes
+
+You need not use the Registration and Login Controllers.
 
 ## Task 0: Run the Existing Application
 ### Description
@@ -29,11 +32,11 @@ Run the existing application in Gitpod and review the codebase.
    - Port 3000: Frontend React JS Application
    - Port 6006: Frontend Storybook for React Components
 5. When navigating to Port 8080, you will see the following screen:
-   ![Backend Swagger UI](https://user-images.githubusercontent.com/1024314/139579072-1b3b3b7b-1b3b-4b1b-8b3b-1b3b4b1b8b3b.png)
+   ![Backend Swagger UI](./docs/img/Backend%20Swagger%20UI.png)
 6. When navigating to Port 3000, you will see the following screen:
-   ![Frontend React JS Application](https://user-images.githubusercontent.com/1024314/139579073-1b3b3b7b-1b3b-4b1b-8b3b-1b3b4b1b8b3b.png). You should be able to enter any text to add a new item to the To Do List.
+   ![Frontend React JS Application](./docs/img/Frontend%20React%20JS%20Application.png) and be able to enter any text to add a new item to the To Do List.
 7. When navigating to Port 6006, you will see the following screen:
-    ![Frontend Storybook for React Components](https://user-images.githubusercontent.com/1024314/139579074-1b3b3b7b-1b3b-4b1b-8b3b-1b3b4b1b8b3b.png)
+    ![Frontend Storybook for React Components](./docs/img/Frontend%20Storybook%20for%20React%20Components.png)
 6. Review the existing codebase and software architecture before proceeding to the next task.
 
 ## Task 1a: Implement the "Get Task" API in Backend TaskController
@@ -98,8 +101,8 @@ Implement the "Delete Task" feature in the Frontend React JS application to dele
 ### Description
 Extend the existing application APIs to handle sub-tasks for each task.
 ### Steps
-1. Create a files called `Subtask.java` file located at `./backend/src/main/java/com/example/backendapplication/model/`.
-2. Add a new field `List<Subtask>` in `Task.java` to represent sub-tasks for each task.
+1. Create corresponding files for the `Subtask` (e.g. model, repository, service, service implementation).
+2. Add a new field `List<Subtask>` in `Task.java` model to represent sub-tasks for each task.
 3. Create a `SubtaskController` to handle sub-tasks for each task.
 4. Implement the following APIs:
    - `GET /tasks/{id}/subtasks`: Retrieve all sub-tasks for a specific task.

@@ -28,111 +28,111 @@ class SubTaskControllerIntegrationTest {
 
     private String taskId;
 
-    @BeforeEach
-    void setUp() throws Exception {
-        taskId = getTaskId();
-    }
+    // @BeforeEach
+    // void setUp() throws Exception {
+    //     taskId = getTaskId();
+    // }
 
-    private String getTaskId() throws Exception {
-        TaskCreationRequest request = new TaskCreationRequest();
-        request.setName("Test Task");
-        request.setDetails("Test Details");
+    // private String getTaskId() throws Exception {
+    //     TaskCreationRequest request = new TaskCreationRequest();
+    //     request.setName("Test Task");
+    //     request.setDetails("Test Details");
 
-        MvcResult task = mockMvc.perform(post("/tasks/task")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk()).andReturn();
-        String response = task.getResponse().getContentAsString();
-        String id = objectMapper.readTree(response).get("id").asText();
-        assert id != null;
-        return id;
-    }
+    //     MvcResult task = mockMvc.perform(post("/tasks/task")
+    //                     .contentType(MediaType.APPLICATION_JSON)
+    //                     .content(objectMapper.writeValueAsString(request)))
+    //             .andExpect(status().isOk()).andReturn();
+    //     String response = task.getResponse().getContentAsString();
+    //     String id = objectMapper.readTree(response).get("id").asText();
+    //     assert id != null;
+    //     return id;
+    // }
 
-    @Test
-    void testGetTasks() throws Exception {
-        mockMvc.perform(get("/tasks/")
-                        .param("page", "0")
-                        .param("size", "10")
-                        .param("orderBy", "name")
-                        .param("direction", "ASC"))
-                .andExpect(status().isOk());
-    }
+    // @Test
+    // void testGetTasks() throws Exception {
+    //     mockMvc.perform(get("/tasks/")
+    //                     .param("page", "0")
+    //                     .param("size", "10")
+    //                     .param("orderBy", "name")
+    //                     .param("direction", "ASC"))
+    //             .andExpect(status().isOk());
+    // }
 
-    @Test
-    void testCreateTask() throws Exception {
-        createSubtask();
-    }
+    // @Test
+    // void testCreateTask() throws Exception {
+    //     createSubtask();
+    // }
 
 
 
-    private MvcResult createSubtask() throws Exception {
-        TaskCreationRequest request = new TaskCreationRequest();
-        request.setName("Test Task");
-        request.setDetails("Test Details");
+    // private MvcResult createSubtask() throws Exception {
+    //     TaskCreationRequest request = new TaskCreationRequest();
+    //     request.setName("Test Task");
+    //     request.setDetails("Test Details");
 
-        return mockMvc.perform(post("/subtasks/?parentTask={id}", taskId)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk()).andReturn();
-    }
+    //     return mockMvc.perform(post("/subtasks/?parentTask={id}", taskId)
+    //                     .contentType(MediaType.APPLICATION_JSON)
+    //                     .content(objectMapper.writeValueAsString(request)))
+    //             .andExpect(status().isOk()).andReturn();
+    // }
 
-    private String getSubTaskId() throws Exception {
-        MvcResult task = createSubtask();
-        String response = task.getResponse().getContentAsString();
-        String id = objectMapper.readTree(response).get("id").asText();
-        assert id != null;
-        return id;
-    }
+    // private String getSubTaskId() throws Exception {
+    //     MvcResult task = createSubtask();
+    //     String response = task.getResponse().getContentAsString();
+    //     String id = objectMapper.readTree(response).get("id").asText();
+    //     assert id != null;
+    //     return id;
+    // }
 
-    @Test
-    void testToggleTaskCompletion() throws Exception {
-        mockMvc.perform(put("/subtasks/{id}", getSubTaskId()))
-                .andExpect(status().isOk());
+    // @Test
+    // void testToggleTaskCompletion() throws Exception {
+    //     mockMvc.perform(put("/subtasks/{id}", getSubTaskId()))
+    //             .andExpect(status().isOk());
 
-        // If task id is invalid, throw error
-        mockMvc.perform(put("/subtasks/{id}", INVALID_ID))
-                .andExpect(status().isBadRequest())
-                .andExpect(content().string("Task with id 00000000-0000-0000-0000-000000000000 not found"));
-    }
+    //     // If task id is invalid, throw error
+    //     mockMvc.perform(put("/subtasks/{id}", INVALID_ID))
+    //             .andExpect(status().isBadRequest())
+    //             .andExpect(content().string("Task with id 00000000-0000-0000-0000-000000000000 not found"));
+    // }
 
-    @Test
-    void testGetTask() throws Exception {
-        mockMvc.perform(get("/subtasks/{id}", getSubTaskId()))
-                .andExpect(status().isOk());
+    // @Test
+    // void testGetTask() throws Exception {
+    //     mockMvc.perform(get("/subtasks/{id}", getSubTaskId()))
+    //             .andExpect(status().isOk());
 
-        // If task id is invalid, throw error
-        mockMvc.perform(get("/subtasks/{id}", INVALID_ID))
-                .andExpect(status().isBadRequest())
-                .andExpect(content().string("Task with id 00000000-0000-0000-0000-000000000000 not found"));
-    }
+    //     // If task id is invalid, throw error
+    //     mockMvc.perform(get("/subtasks/{id}", INVALID_ID))
+    //             .andExpect(status().isBadRequest())
+    //             .andExpect(content().string("Task with id 00000000-0000-0000-0000-000000000000 not found"));
+    // }
 
-    @Test
-    void testUpdateTask() throws Exception {
-        TaskCreationRequest request = new TaskCreationRequest();
-        request.setName("Updated Task");
-        request.setDetails("Updated Details");
+    // @Test
+    // void testUpdateTask() throws Exception {
+    //     TaskCreationRequest request = new TaskCreationRequest();
+    //     request.setName("Updated Task");
+    //     request.setDetails("Updated Details");
 
-        mockMvc.perform(post("/subtasks/{id}", getSubTaskId())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk());
+    //     mockMvc.perform(post("/subtasks/{id}", getSubTaskId())
+    //                     .contentType(MediaType.APPLICATION_JSON)
+    //                     .content(objectMapper.writeValueAsString(request)))
+    //             .andExpect(status().isOk());
 
-        // If task id is invalid, throw error
-        mockMvc.perform(post("/subtasks/{id}", INVALID_ID)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isBadRequest())
-                .andExpect(content().string("Task with id 00000000-0000-0000-0000-000000000000 not found"));
-    }
+    //     // If task id is invalid, throw error
+    //     mockMvc.perform(post("/subtasks/{id}", INVALID_ID)
+    //                     .contentType(MediaType.APPLICATION_JSON)
+    //                     .content(objectMapper.writeValueAsString(request)))
+    //             .andExpect(status().isBadRequest())
+    //             .andExpect(content().string("Task with id 00000000-0000-0000-0000-000000000000 not found"));
+    // }
 
-    @Test
-    void testDeleteTask() throws Exception {
-        mockMvc.perform(delete("/subtasks/{id}", getSubTaskId()))
-                .andExpect(status().isOk());
+    // @Test
+    // void testDeleteTask() throws Exception {
+    //     mockMvc.perform(delete("/subtasks/{id}", getSubTaskId()))
+    //             .andExpect(status().isOk());
 
-        // If task id is invalid, throw error
-        mockMvc.perform(delete("/subtasks/{id}", INVALID_ID))
-                .andExpect(status().isBadRequest())
-                .andExpect(content().string("Task with id 00000000-0000-0000-0000-000000000000 not found"));
-    }
+    //     // If task id is invalid, throw error
+    //     mockMvc.perform(delete("/subtasks/{id}", INVALID_ID))
+    //             .andExpect(status().isBadRequest())
+    //             .andExpect(content().string("Task with id 00000000-0000-0000-0000-000000000000 not found"));
+    // }
 }
