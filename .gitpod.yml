@@ -20,8 +20,10 @@ tasks:
   - name: Run Backend Java Springboot
     command: cd backend && mvn spring-boot:run
   - name: Run Frontend ReactJS
+    init: cd frontend && npm i && gp sync-done frontend
     command: cd frontend && npm run start
   - name: Run Storybook
+    init: gp sync-await frontend
     command: cd frontend && npm run storybook
 
 ports:
