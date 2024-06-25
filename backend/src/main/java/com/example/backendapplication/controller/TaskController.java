@@ -6,6 +6,7 @@ import com.example.backendapplication.model.TaskCreationRequest;
 import com.example.backendapplication.service.ITaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -40,7 +41,7 @@ public class TaskController {
 
     @Operation(summary = "Create a task")
     @PostMapping("/task")
-    public ResponseEntity<Task> createTask(@RequestBody TaskCreationRequest request) {
+    public ResponseEntity<Task> createTask(@RequestBody @Valid TaskCreationRequest request) {
         log.info("Creating task with name {} and details {}", request.getName(), request.getDetails());
         return ResponseEntity.ok(taskService.createTask(request.getName(), request.getDetails()));
     }
