@@ -5,16 +5,15 @@
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
 
 tasks:
-  - init: |
-      /home/gitpod/.sdkman/bin/sdkman-init.sh 
+  - name: Run Services
+    command: docker-compose up;
+# Build and Run
+  - name: Run Backend Java Springboot
+    init: |
       sdk install java 17.0.3-ms 
       sdk default java 17.0.3-ms 
       cd backend 
       mvn clean install -DskipTests=false
-  - name: Run Services
-    command: docker-compose up -d; 
-# Build and Run
-  - name: Run Backend Java Springboot
     command: cd backend && mvn spring-boot:run
   - name: Run Frontend ReactJS
     init: cd frontend && npm i && gp sync-done frontend
