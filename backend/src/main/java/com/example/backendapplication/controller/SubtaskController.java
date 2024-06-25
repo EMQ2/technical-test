@@ -23,6 +23,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
+@CrossOrigin
 public class SubtaskController {
 
     @Operation(summary = "Get all subtasks for tasks")
