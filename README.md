@@ -2,6 +2,8 @@
 
 Thank you for participating in the Full-Stack Developer Coding Challenge! This repository contains a sample application that you'll be working with to demonstrate your full-stack development skills.
 
+If you have not used Java Spring Boot or React JS before, don't worry! This coding challenge provides you with existing working code that you can refer to while completing the tasks. Take some time to review the codebase and architecture, and use it as a guide to understand how the application is structured. This will help you showcase your understanding of full-stack concepts and your ability to learn and implement new features. Good luck!
+
 ## Project Overview
 
 The application consists of the following components:

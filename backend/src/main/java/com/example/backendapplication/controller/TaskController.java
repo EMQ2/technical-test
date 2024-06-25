@@ -54,37 +54,30 @@ public class TaskController {
         return ResponseEntity.ok(taskService.toggleTaskCompletion(id));
     }
 
-    /*
-     * Implement the following endpoints:
-     */
-
     @Operation(summary = "Get a task by ID")
     @GetMapping("/task/{id}")
     public ResponseEntity<Task> getTask(@PathVariable UUID id) throws TaskNotFoundException {
-        // TODO: Implement me
-//        throw new RuntimeException("Not implemented");
-
+        // TODO: Implement this method for Task 1a.
+        throw new RuntimeException("Not implemented");
         // Solution below
-        return ResponseEntity.ok(taskService.getTaskById(id));
-    }
-
-    @Operation(summary = "Update a task")
-    @PostMapping("/task/{id}")
-    public ResponseEntity<Task> updateTask(@PathVariable UUID id, @RequestBody @Valid TaskCreationRequest request) throws TaskNotFoundException {
-        // TODO: Implement me
-//        throw new RuntimeException("Not implemented");
-
-        // Solution Below
-        return ResponseEntity.ok(taskService.updateTask(id, request.getName(), request.getDetails()));
+        // return ResponseEntity.ok(taskService.getTaskById(id));
     }
 
     @Operation(summary = "Delete a task")
     @DeleteMapping("/task/{id}")
     public ResponseEntity<Boolean> deleteTask(@PathVariable UUID id) throws TaskNotFoundException {
-        // TODO: Implement me
-//        throw new RuntimeException("Not implemented");
-
+        // TODO: Implement this method for Task 1b.
+        throw new RuntimeException("Not implemented");
         // Solution Below
-        return ResponseEntity.ok(taskService.deleteTask(id));
+        // return ResponseEntity.ok(taskService.deleteTask(id));
+    }
+
+    @Operation(summary = "Update a task")
+    @PostMapping("/task/{id}")
+    public ResponseEntity<Task> updateTask(@PathVariable UUID id, @RequestBody @Valid TaskCreationRequest request) throws TaskNotFoundException {
+        // TODO: Implement this method for Task 1c.
+        throw new RuntimeException("Not implemented");
+        // Solution Below
+        // return ResponseEntity.ok(taskService.updateTask(id, request.getName(), request.getDetails()));
     }
 }

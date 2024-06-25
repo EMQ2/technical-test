@@ -1,76 +1,93 @@
-# Full-Stack Developer Evaluation Tasks
+# Tasks
+## My Progress
 
-This document outlines the specific tasks you need to complete as part of the evaluation process. Please read through all tasks carefully before starting.
+Mark the tasks you have completed with an `x` in the checkbox. This is required for your submission to be reviewed.
+- [x] Task 0: Run the Existing Application
+- [ ] Task 1a: Implement the "Get Task" API in Backend TaskController
+- [ ] Task 1b: Implement the "Delete Task" API in Backend TaskController
+- [ ] Task 1c: Implement the "Update Task" API in Backend TaskController
+- [ ] Task 2: Implement the "Delete Task" Feature in Frontend
 
-## 1. Backend Modification
 
-### Task 1.1: New API Endpoint
-- Create a new API endpoint `/api/v1/analytics` that returns a summary of user activity.
-- The summary should include:
-  - Total number of active users
-  - Number of new users in the last 7 days
-  - Top 5 most active users (based on login frequency)
-- Implement proper error handling and logging for this endpoint.
 
-### Task 1.2: Unit Testing
-- Write comprehensive unit tests for the new API endpoint.
-- Ensure at least 80% code coverage for the new functionality.
+## Task 0: Run the Existing Application
+### Description
+Run the existing application in Gitpod and review the codebase.
+### Steps
+1. Open the "Terminal" tab in Gitpod in the bottom panel.
+2. You should already see 4 terminal windows open:
+   - Services: Docker Compose Services (Redis, MariaDB)
+   - Backend: Java Spring Boot application
+   - Frontend: React JS application
+   - Frontend: Storybook for React components
+3. When you modify any file in the codebase, the application will automatically reload. If you encounter any issues, you can navigate to the respective terminal window and restart the service by pressing `Ctrl + C` and `Up Arrow` followed by `Enter` to run the command again.
+4. You can access the following services:
+   - Port 8080: Swagger UI for Backend APIs
+   - Port 3000: Frontend React JS Application
+   - Port 6006: Frontend Storybook for React Components
+5. When navigating to Port 8080, you will see the following screen:
+   ![Backend Swagger UI](https://user-images.githubusercontent.com/1024314/139579072-1b3b3b7b-1b3b-4b1b-8b3b-1b3b4b1b8b3b.png)
+6. When navigating to Port 3000, you will see the following screen:
+   ![Frontend React JS Application](https://user-images.githubusercontent.com/1024314/139579073-1b3b3b7b-1b3b-4b1b-8b3b-1b3b4b1b8b3b.png). You should be able to enter any text to add a new item to the To Do List.
+7. When navigating to Port 6006, you will see the following screen:
+    ![Frontend Storybook for React Components](https://user-images.githubusercontent.com/1024314/139579074-1b3b3b7b-1b3b-4b1b-8b3b-1b3b4b1b8b3b.png)
+6. Review the existing codebase and software architecture before proceeding to the next task.
 
-## 2. Frontend Enhancement
+## Task 1a: Implement the "Get Task" API in Backend TaskController
+### Description
+Implement the `GET /tasks/{id}` API in the `TaskController` to retrieve a specific task by its ID.
+### Steps
+1. Open the `TaskController.java` file located at `./backend/src/main/java/com/example/backendapplication/controller/TaskController.java`.
+2. Implement the method corresponding to the `GET /tasks/{id}` API to retrieve a specific task by its ID.
+3. Your solution should not be more than 10 lines of code.
+4. Test your implementation by:
+   1. Navigating to the Swagger UI at Port 8080 and first calling the `POST /tasks` API to create a new task. 
+   2. Then, call the `GET /tasks/{id}` API with the ID of the task you created to verify that the task is retrieved successfully.
+   3. Uncomment the `testGetTask` test case in the `TaskControllerTest.java` file located at `./backend/src/test/java/com/example/backendapplication/controller/TaskControllerTest.java`
+   4. Run unit tests to ensure that the API is working as expected by running the following command in the a new terminal from the `backend` directory: `mvn test`, ensuring all tests pass.
 
-### Task 2.1: New React Native Component
-- Create a new `AnalyticsDashboard` component that displays the data from the `/api/v1/analytics` endpoint.
-- Add this component to the Storybook with appropriate documentation.
+## Task 1b: Implement the "Delete Task" API in Backend TaskController
+### Description
+Implement the `DELETE /tasks/{id}` API in the `TaskController` to delete a specific task by its ID.
+### Steps
+1. Open the `TaskController.java` file located at `./backend/src/main/java/com/example/backendapplication/controller/TaskController.java`.
+2. Implement the method corresponding to the `DELETE /tasks/{id}` API to delete a specific task by its ID.
+3. Your solution should not be more than 10 lines of code.
+4. Test your implementation by:
+   1. Navigating to the Swagger UI at Port 8080 and first calling the `POST /tasks` API to create a new task. 
+   2. Then, call the `DELETE /tasks/{id}` API with the ID of the task you created. 
+   3. Then call the `GET /tasks` API to verify that the task has been deleted successfully.
+   4. Uncomment the `testDeleteTask` test case in the `TaskControllerTest.java` file located at `./backend/src/test/java/com/example/backendapplication/controller/TaskControllerTest.java`
+   5. Run unit tests to ensure that the API is working as expected by running the following command in the a new terminal from the `backend` directory: `mvn test`, ensuring all tests pass.
 
-### Task 2.2: Performance Optimization
-- Implement memo or useMemo for the `AnalyticsDashboard` component to optimize rendering performance.
-- Use the React DevTools Profiler to measure and document the performance improvement.
+## Task 1c: Implement the "Update Task" API in Backend TaskController
+### Description
+Implement the `PUT /tasks/{id}` API in the `TaskController` to update a specific task by its ID.
+### Steps
+1. Open the `TaskController.java` file located at `./backend/src/main/java/com/example/backendapplication/controller/TaskController.java`.
+2. Implement the method corresponding to the `PUT /tasks/{id}` API to update a specific task by its ID.
+3. Your solution should not be more than 10 lines of code.
+4. Test your implementation by:
+   1. Navigating to the Swagger UI at Port 8080 and first calling the `POST /tasks` API to create a new task. 
+   2. Then, call the `PUT /tasks/{id}` API with the ID of the task you created and provide the updated task details. 
+   3. Then call the `GET /tasks/{id}` API to verify that the task has been updated successfully.
+   4. Uncomment the `testUpdateTask` test case in the `TaskControllerTest.java` file located at `./backend/src/test/java/com/example/backendapplication/controller/TaskControllerTest.java`
+   5. Run unit tests to ensure that the API is working as expected by running the following command in the a new terminal from the `backend` directory: `mvn test`, ensuring all tests pass.
 
-## 3. API Integration
+## Task 2: Implement the "Delete Task" Feature in Frontend
+### Description
+Implement the "Delete Task" feature in the Frontend React JS application to delete a specific task by its ID.
+### Steps
+1. Open the `TaskItem.tsx` file located at `./frontend/src/components/TaskItem.tsx`.
+2. Add a cross icon or a "Delete" button next to each task item in the To Do List.
+3. Implement the logic to delete a specific task by its ID when the "Delete" button is clicked.
+4. Your solution should not be more than 25 lines of code.
+5. Test your implementation by:
+   1. Navigating to the Frontend React JS application at Port 3000.
+   2. Add a new task to the To Do List.
+   3. Click on the "Delete" button next to the task to delete it.
+   4. Verify that the task has been deleted successfully from the To Do List.
+6. Ensure that the application is working as expected and that the task has been deleted successfully.
+7. Write unit tests to ensure that the feature is working as expected.
+8. Run the following command in a new terminal from the `frontend` directory: `npm test`, ensuring all tests pass.
 
-### Task 3.1: State Management
-- Integrate the new analytics API with the frontend using Redux or Context API.
-- Implement proper loading, success, and error states for the API call.
-
-### Task 3.2: Error Handling
-- Implement a global error boundary for the React Native app.
-- Create a user-friendly error message component for API errors.
-
-## 4. Docker Configuration
-
-### Task 4.1: Dockerfile Optimization
-- Modify the existing Dockerfile to use multi-stage builds, reducing the final image size.
-- Document the before and after image sizes.
-
-### Task 4.2: Environment Variable
-- Add a new environment variable `ANALYTICS_CACHE_DURATION` to control how long the analytics data is cached.
-- Update the Docker Compose file to include this new variable.
-
-## 5. Database Interaction
-
-### Task 5.1: New Data Model
-- Create a new `UserActivity` table/collection to store user login events.
-- Implement a mechanism to record a user's login time whenever they authenticate.
-
-### Task 5.2: CRUD Operations
-- Implement CRUD operations for the `UserActivity` model.
-- Update the `/api/v1/analytics` endpoint to use this new data for its calculations.
-
-## 6. New Feature Implementation
-
-### Task 6.1: Real-time Updates
-- Implement real-time updates for the `AnalyticsDashboard` using WebSockets.
-- Use the `socket.io` library, which is not currently in the project. You'll need to research and implement this.
-
-## Submission Guidelines
-
-1. Create a new branch named `feature/analytics-dashboard`.
-2. Commit your changes with clear, descriptive commit messages.
-3. Push your branch to the repository.
-4. Create a pull request with a description of all the changes you've made.
-5. In the pull request description, also include:
-   - Any assumptions you made
-   - Any parts you found particularly challenging
-   - Any additional improvements you would make if you had more time
-
-Good luck! We're excited to see your implementation.
