@@ -13,7 +13,10 @@ tasks:
       y | sdk install java 17.0.3-ms || true
       cd backend 
       mvn clean install -DskipTests=false
-    command: cd backend && mvn spring-boot:run
+    command: mvn spring-boot:run
+  - name: Open SwaggerUI
+    command: |
+      gp ports await 8080 && gp preview --external $(gp url 8080)/swagger-ui/index.html && exit
   - name: Run Frontend ReactJS
     init: cd frontend && npm i && gp sync-done frontend
     command: npm run start
@@ -24,12 +27,18 @@ tasks:
 ports:
     - name: Backend SwaggerUI
       port: 8080
-      onOpen: open-preview
+      onOpen: ignore
     - name: Frontend App
       port: 3000
-      onOpen: open-preview
+      onOpen: open-browser
     - name: Frontend Storybook
       port: 6006
-      onOpen: open-preview
+      onOpen: open-browser
+    - name: MariaDB
+      port: 3306
+      onOpen: ignore
+    - name: Redis
+      port: 6789
+      onOpen: ignore
 
 
