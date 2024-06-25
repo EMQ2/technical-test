@@ -12,6 +12,8 @@ tasks:
   - command: docker-compose up -d; 
 # Build and Run
   - command: cd backend && mvn spring-boot:run
+# Frontend Build and Run
+  - command: cd frontend && npm run start && npm run storybook
 
 
 
