@@ -62,7 +62,7 @@ Your submission will be evaluated based on the following criteria:
 
 ## Time Limit
 
-You have a maximum of 3 calendar days to complete as many tasks as possible. However, we recommend not spending more than 1 hour on this challenge. Quality is valued over quantity, so focus on delivering well-implemented features rather than trying to complete everything if time is short.
+You have a maximum of 3 calendar days to complete as many tasks as possible. However, we recommend not spending more than 90 minutes on this challenge. Quality is valued over quantity, so focus on delivering well-implemented features rather than trying to complete everything if time is short.
 
 ## Questions and Support
 
