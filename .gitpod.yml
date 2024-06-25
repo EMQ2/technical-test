@@ -10,17 +10,16 @@ tasks:
 # Build and Run
   - name: Run Backend Java Springboot
     init: |
-      sdk install java 17.0.3-ms 
-      sdk default java 17.0.3-ms 
+      y | sdk install java 17.0.3-ms || true
       cd backend 
       mvn clean install -DskipTests=false
     command: cd backend && mvn spring-boot:run
   - name: Run Frontend ReactJS
     init: cd frontend && npm i && gp sync-done frontend
-    command: cd frontend && npm run start
+    command: npm run start
   - name: Run Storybook
-    init: gp sync-await frontend
-    command: cd frontend && npm run storybook
+    init: gp sync-await frontend && cd frontend
+    command: npm run storybook
 
 ports:
     - name: Backend SwaggerUI
