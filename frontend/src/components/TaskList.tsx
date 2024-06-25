@@ -79,6 +79,7 @@ const TaskList: React.FC = () => {
     <div style={{ padding: "20px" }}>
       <AddTaskForm onFormSubmit={addTask} buttonLabel="Add Task" />
       <List
+        locale={{ emptyText: "No tasks" }}
         dataSource={tasks}
         renderItem={(task, index) => (
           <List.Item>
@@ -136,6 +137,7 @@ const Task: React.FC<TaskProps> = ({
           buttonLabel="Add Sub Task"
         />
         <List
+          locale={{ emptyText: "No sub tasks" }}
           dataSource={task.subTasks}
           renderItem={(subTask, subTaskIndex) => (
             <List.Item>

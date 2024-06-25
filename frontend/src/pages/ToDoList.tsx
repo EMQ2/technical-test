@@ -1,39 +1,10 @@
-import React, { useEffect } from "react";
-import { Row, Col, Card, Typography } from "antd";
-
-// import { TodoList } from "components/TodoList";
-import { message } from "antd";
-
-import { CreateTask, Task } from "../types/Task";
-import { createTask, fetchAllTasks } from "../api/TaskAPI";
-import { AddTaskForm } from "../components/AddTaskForm";
-import TaskList from "../components/TaskList";
-import { PageHeader } from "../components/PageHeader";
+import React from "react";
+import { Row, Col, Card } from "antd";
+import { PageHeader, TaskList } from "../components";
 
 interface ITodoListProps {}
 
 export const TodoList: React.FunctionComponent<ITodoListProps> = () => {
-  const { Title } = Typography;
-  const [tasks, setTasks] = React.useState<Task[]>([]);
-
-  const fetchTasks = async () => {
-    const response = await fetchAllTasks();
-    setTasks(response.content);
-  };
-
-  useEffect(() => {
-    fetchTasks();
-  }, []);
-
-  const handleFormSubmit = (todo: CreateTask): void => {
-    console.log(todo);
-    createTask(todo).then((response) => {
-      console.log(response);
-      fetchTasks();
-      message.success("Task added!");
-    });
-  };
-
   return (
     <Row
       justify="center"
@@ -67,7 +38,7 @@ export const TodoList: React.FunctionComponent<ITodoListProps> = () => {
         lg={{ span: 20 }}
         xl={{ span: 18 }}
       >
-        <Card title="Todo List">
+        <Card>
           <TaskList />
         </Card>
       </Col>
